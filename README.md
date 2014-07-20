@@ -1,26 +1,49 @@
 # Guard::RspecMin
 
-TODO: Write a gem description
+This is a minimal re-implementation of the `guard-rspec` plugin.  
+
+This plugin has fewer configuration options that the original, but
+has less code for simplicity and easier customization.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'guard-rspec_min'
+group :development, :test do
+  gem 'guard-rspec_min', require: false
+end
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Add guard definition to your Guardfile:
 
-    $ gem install guard-rspec_min
+    $ bundle exec guard init rspec_min
 
 ## Usage
 
-TODO: Write usage instructions here
+Please read the guard usage doc.
+
+## Options
+
+### Specifying Options in Guardfile
+
+```ruby
+guard :rspec_min, {cmd: 'spring rspec -f doc'} do
+  # ...
+end
+```
+
+### Available Options
+
+```ruby
+cmd: 'spring rspec'       # Specify a custom command for rspec
+tags: {a: true, b: false} # list of tags (empty is OK)
+specs: ["asdf", "qwer"]   # list of regexes to match files
+```
 
 ## Contributing
 
@@ -29,7 +52,4 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
-guard-rspec_min
-===============
 
-Minimal Guard Plugin for Rspec
