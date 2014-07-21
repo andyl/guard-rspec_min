@@ -54,7 +54,7 @@ module Guard
 
     def run_paths(paths)
       cmd = "#{full_cmd} #{target_specs(paths)}"
-      puts cmd.yellow
+      puts cmd.squeeze(' ').yellow
       system "#{cmd}"
     end
 
