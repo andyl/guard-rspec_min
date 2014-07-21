@@ -7,7 +7,7 @@ module Guard
     def initialize(options = {})
       super
       @options[:cmd]   ||= "spring rspec"
-      @options[:tags]  ||= {}
+      @options[:tags]  ||= []
       @options[:specs] ||= []
     end
 
@@ -25,10 +25,12 @@ module Guard
 
     def run_all
       UI.info "run_all Guard::RspecMin"
+      run_all_paths
     end
 
     def run_on_changes(paths)
       UI.info "changed paths Guard::RspecMin"
+      run_paths(paths)
     end
 
     def run_on_additions(paths)
@@ -37,6 +39,7 @@ module Guard
 
     def run_on_modifications(paths)
       UI.info "modifications Guard::RspecMin"
+      run_paths(paths)
     end
 
     def run_on_removals(paths)
@@ -50,13 +53,15 @@ module Guard
     end
 
     def run_paths(paths)
-      cmd = "#{full_cmd} #{target_specs(path)}"
-      UI.info cmd yellow
+      cmd = "#{full_cmd} #{target_specs(paths)}"
+      puts cmd.yellow
       system "#{cmd}"
     end
 
     def full_cmd
-      @options[:cmd]
+      tags  = @options[:tags].map {|o| "-t #{o}"}.join(' ')
+      specs = @options[:specs].join(' ')
+      [@options[:cmd], tags, specs].join(' ')
     end
 
     def target_specs(paths)
