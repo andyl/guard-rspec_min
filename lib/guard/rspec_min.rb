@@ -65,7 +65,7 @@ module Guard
     end
 
     def target_specs(paths)
-      paths.map {|p| File.basename(p).split('.').first}.uniq.sort.join(' ')
+      paths.join(' ')
     end
   end
 end
