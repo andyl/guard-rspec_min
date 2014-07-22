@@ -12,7 +12,7 @@ module Guard
     end
 
     def start
-      UI.info "starting Guard::RspecMin".cyan.underline
+      UI.info "starting Guard::RspecMin"
     end
 
     def stop
