@@ -12,38 +12,38 @@ module Guard
     end
 
     def start
-      UI.info "starting Guard::RspecMin"
+      UI.info "starting Guard::RspecMin".cyan.underline
     end
 
     def stop
-      UI.info "stopping Guard::RspecMin"
+      UI.info "stopping Guard::RspecMin".cyan.underline
     end
 
     def reload
-      UI.info "reloading Guard::RspecMin"
+      UI.info "reloading Guard::RspecMin".cyan.underline
     end
 
     def run_all
-      UI.info "run_all Guard::RspecMin"
+      UI.info "run_all Guard::RspecMin".cyan.underline
       run_all_paths
     end
 
     def run_on_changes(paths)
-      UI.info "changed paths Guard::RspecMin"
+      UI.info "changed paths Guard::RspecMin".cyan.underline
       run_paths(paths)
     end
 
     def run_on_additions(paths)
-      UI.info "additions Guard::RspecMin"
+      UI.info "additions Guard::RspecMin".cyan.underline
     end
 
     def run_on_modifications(paths)
-      UI.info "modifications Guard::RspecMin"
+      UI.info "modifications Guard::RspecMin".cyan.underline
       run_paths(paths)
     end
 
     def run_on_removals(paths)
-      UI.info "removals Guard::RspecMin"
+      UI.info "removals Guard::RspecMin".cyan.underline
     end
 
     private
