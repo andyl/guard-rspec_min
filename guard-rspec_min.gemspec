@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'guard/rspec_min/version'
+require 'guard/rspec_min_util/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "guard-rspec_min"
-  spec.version       = Guard::RspMin::VERSION
+  spec.version       = Guard::RspecMinUtil::VERSION
   spec.authors       = ["andyl"]
   spec.email         = ["andy@r210.com"]
   spec.summary       = %q{Minimal Guard plugin for Rspec}
