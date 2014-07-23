@@ -65,7 +65,7 @@ module Guard
     end
 
     def target_specs(paths)
-      paths.join(' ')
+      paths.empty? ? "spec" : paths.join(' ')
     end
   end
 end
