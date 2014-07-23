@@ -40,7 +40,6 @@ module Guard
             group       GRP_RS
             description "Rspec Paths: Update the spec_path"
             banner      "Update the spec path"
-
             def process(*args)
               if args == []
                 rs_opts[:specs] = ["spec"]
@@ -55,7 +54,6 @@ module Guard
           create_command 'rt' do
             group GRP_RS
             description "Rspec Tags: Set and clear spec tags"
-
             def process(*args)
               rs_opts[:tags] = args
               tags = "[#{rs_opts[:tags].join(', ')}]".yellow
@@ -66,7 +64,6 @@ module Guard
           create_command 'rs' do
             group GRP_RS
             description "Rspec Settings: Show spec settings"
-
             def process
               rs_status
             end
@@ -75,7 +72,6 @@ module Guard
           create_command 'rd' do
             group GRP_RS
             description "Rspec Directories: Show a list of all spec directories"
-
             def process
               dirs  = Dir.glob('spec/**/*').select {|x| File.directory? x}
               paths = "[#{dirs.join(' ')}]".yellow
@@ -86,7 +82,6 @@ module Guard
           create_command 'rp+' do
             group GRP_RS
             description "Rspec Profiling On: Turn spec profiling On"
-
             def process
               rs_opts[:cmd] = rs_opts[:cmd].gsub(' -p 3','') + " -p 3"
               output.puts " > Rspec profiling has been turned #{"On".yellow}"
@@ -96,7 +91,6 @@ module Guard
           create_command 'rp-' do
             group GRP_RS
             description "Rspec Profiling Off: Turn spec profiling Off"
-
             def process
               rs_opts[:cmd] = rs_opts[:cmd].gsub(' -p 3','')
               output.puts " > Rspec profiling has been turned #{"Off".yellow}"

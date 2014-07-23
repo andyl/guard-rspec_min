@@ -1,0 +1,7 @@
+guard :tsp do
+  # Implementation files
+  watch(%r{^app/assets/javascripts/(.+).js(.coffee)?}) { |m| "#{m[1]}_spec" }
+
+  # Specs / Helpers
+  watch(%r{^spec/javascripts/(.*)})
+end
