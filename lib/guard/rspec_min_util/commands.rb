@@ -2,7 +2,7 @@ module Guard
   module RspecMinUtil
     class Commands
 
-      GRP_RS = "GR"
+      RS_GRP = "RSpec"
 
       def self.command_set
         Pry::CommandSet.new do
@@ -37,9 +37,8 @@ module Guard
           end
 
           create_command 'rp' do
-            group       GRP_RS
-            description "Rspec Paths: Update the spec_path"
-            banner      "Update the spec path"
+            group       RS_GRP
+            description "Rspec: update the spec Path"
             def process(*args)
               if args == []
                 rs_opts[:specs] = ["spec"]
@@ -52,8 +51,8 @@ module Guard
           end
 
           create_command 'rt' do
-            group GRP_RS
-            description "Rspec Tags: Set and clear spec tags"
+            group RS_GRP
+            description "Rspec: set spec Tags"
             def process(*args)
               rs_opts[:tags] = args
               tags = "[#{rs_opts[:tags].join(', ')}]".yellow
@@ -61,17 +60,17 @@ module Guard
             end
           end
 
-          create_command 'rs' do
-            group GRP_RS
-            description "Rspec Settings: Show spec settings"
+          create_command 'rp' do
+            group RS_GRP
+            description "Rspec: show status prompt"
             def process
-              rs_status
+              ::Guard::RspecMinUtil::Commands.prompt
             end
           end
 
           create_command 'rd' do
-            group GRP_RS
-            description "Rspec Directories: Show a list of all spec directories"
+            group RS_GRP
+            description "Rspec: show list of all spec Directories"
             def process
               dirs  = Dir.glob('spec/**/*').select {|x| File.directory? x}
               paths = "[#{dirs.join(' ')}]".yellow
@@ -80,8 +79,8 @@ module Guard
           end
 
           create_command 'rp+' do
-            group GRP_RS
-            description "Rspec Profiling On: Turn spec profiling On"
+            group RS_GRP
+            description "Rspec: profiling on"
             def process
               rs_opts[:cmd] = rs_opts[:cmd].gsub(' -p 3','') + " -p 3"
               output.puts " > Rspec profiling has been turned #{"On".yellow}"
@@ -89,8 +88,8 @@ module Guard
           end
 
           create_command 'rp-' do
-            group GRP_RS
-            description "Rspec Profiling Off: Turn spec profiling Off"
+            group RS_GRP
+            description "Rspec: profiling off"
             def process
               rs_opts[:cmd] = rs_opts[:cmd].gsub(' -p 3','')
               output.puts " > Rspec profiling has been turned #{"Off".yellow}"
@@ -103,7 +102,7 @@ module Guard
         opts  = ::Guard.guards(:rspecmin).first.options
         specs = "[#{opts[:specs].join(', ')}]".yellow
         tags  = "[#{opts[:tags].join(', ')}]".yellow
-        msg   = "h gr".magenta
+        msg   = "h rspec".magenta
         puts " | RspecPaths: #{specs}"
         puts " |  RspecTags: #{tags}"
         puts " |    Options: #{msg}"
