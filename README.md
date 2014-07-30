@@ -1,9 +1,10 @@
 # Guard::RspecMin
 
 This is a minimal re-implementation of the `guard-rspec` plugin.  
-
 This plugin has fewer configuration options that the original, but
 has less code for simplicity and easier customization.
+
+
 
 ## Installation
 

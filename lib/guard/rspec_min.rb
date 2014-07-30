@@ -53,9 +53,14 @@ module Guard
     end
 
     def run_paths(paths)
-      cmd = "#{full_cmd} #{target_specs(paths)}"
-      puts cmd.squeeze(' ').yellow
-      system "#{cmd}"
+      specs = valid_target_specs(paths)
+      if specs.empty?
+        puts "No specs found #{paths}".yellow
+      else
+        cmd   = "#{full_cmd} #{specs}"
+        puts cmd.squeeze(' ').yellow
+        system "#{cmd}"
+      end
     end
 
     def full_cmd
@@ -65,7 +70,13 @@ module Guard
     end
 
     def target_specs(paths)
-      paths.empty? ? "spec" : paths.join(' ')
+      paths.empty? ? ["spec"] : paths
+    end
+
+    def valid_target_specs(paths)
+      target_specs(paths).select do |path|
+        File.exist?(path) || File.exist?("#{path}.rb")
+      end.sort.uniq.join(' ')
     end
   end
 end

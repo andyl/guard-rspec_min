@@ -1,7 +1,17 @@
-guard :tsp do
-  # Implementation files
-  watch(%r{^app/assets/javascripts/(.+).js(.coffee)?}) { |m| "#{m[1]}_spec" }
+# ----- TEASPOON_MIN COMMANDS -----
 
-  # Specs / Helpers
-  watch(%r{^spec/javascripts/(.*)})
+require 'guard/teaspoon_min_util/commands'
+TS_COMMANDS = ::Guard::TeaspoonMinUtil::Commands
+Pry::Commands.import TS_COMMANDS.command_set
+
+# ----- TEASPOON_MIN PATTERNS -----
+
+group :ts do
+  guard :teaspoon_min do
+    watch(%r{^app/assets/javascripts/(.+).js(.coffee)?}) { |m| "#{m[1]}_spec" }
+    watch(%r{^spec/javascripts/(.*)})
+
+    callback(:run_all_end)               { TS_COMMANDS.prompt }
+    callback(:run_on_modifications_end)  { TS_COMMANDS.prompt }
+  end
 end
