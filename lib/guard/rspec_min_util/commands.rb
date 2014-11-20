@@ -102,10 +102,12 @@ module Guard
         opts  = ::Guard.guards(:rspecmin).first.options
         specs = "[#{opts[:specs].join(', ')}]".yellow
         tags  = "[#{opts[:tags].join(', ')}]".yellow
-        msg   = "h rspec".magenta
+        msg1  = "h rspec".magenta
+        msg2  = "o rs (scope rs ts)".magenta
         puts " | RspecPaths: #{specs}"
         puts " |  RspecTags: #{tags}"
-        puts " |    Options: #{msg}"
+        puts " |    Options: #{msg1}"
+        puts " |      Scope: #{msg2}"
         puts " --"
       end
     end
