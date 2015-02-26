@@ -59,7 +59,16 @@ module Guard
       else
         cmd   = "#{full_cmd} #{specs}"
         puts cmd.squeeze(' ').yellow
-        system "#{cmd}"
+        result = system "#{cmd}"
+        notify(result)
+      end
+    end
+
+    def notify(result)
+      if result
+        system "alert crush"
+      else
+        system "alert mute"
       end
     end
 
@@ -76,7 +85,7 @@ module Guard
     def valid_target_specs(paths)
       target_specs(paths).select do |path|
         File.exist?(path) || File.exist?("#{path}.rb")
-      end.sort.uniq.join(' ')
+      end.uniq.join(' ')
     end
   end
 end
