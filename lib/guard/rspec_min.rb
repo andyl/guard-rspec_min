@@ -75,7 +75,7 @@ module Guard
           sleep 1
           print " > #{time}".purple
         end
-        puts "\n"
+        puts ".\n ".purple
       end
     end
 
