@@ -70,7 +70,7 @@ module Guard
       else
         system "alert mute"
         Timeout::timeout(15) do
-          print "Paused 15s - press enter to continue..."
+          puts "Paused 15s - press enter to continue...".purple
           gets
           "OK"
         end
