@@ -69,13 +69,13 @@ module Guard
         system "alert crush"
       else
         system "alert mute"
-        delay = 8
+        delay = 5
         print "Pause: #{delay}".purple
-        (1..delay-1).to_a.reverse.each do |time|
+        (0..delay-1).to_a.reverse.each do |time|
           sleep 1
           print " > #{time}".purple
         end
-        puts " > 0\n\n".purple
+        puts "\n"
       end
     end
 
