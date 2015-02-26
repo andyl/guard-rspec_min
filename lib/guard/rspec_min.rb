@@ -69,11 +69,13 @@ module Guard
         system "alert crush"
       else
         system "alert mute"
-        Timeout::timeout(15) do
-          puts "Paused 15s - press enter to continue...".purple
-          gets
-          "OK"
+        delay = 8
+        print "Pause: #{delay}".purple
+        (1..delay-1).to_a.reverse.each do |time|
+          sleep 1
+          print " > #{time}".purple
         end
+        puts " > 0\n\n".purple
       end
     end
 
