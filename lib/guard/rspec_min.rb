@@ -59,8 +59,27 @@ module Guard
       else
         cmd   = "#{full_cmd} #{specs}"
         puts cmd.squeeze(' ').yellow
-        system "#{cmd}"
+        result = system "#{cmd}"
+        notify(result)
       end
+    end
+
+    def notify(result)
+      if result
+        system "alert crush"
+      else
+        system "alert mute"
+        # pause(5)
+      end
+    end
+
+    def pause(delay)
+      print "Pause: #{delay}".purple
+      (0..delay-1).to_a.reverse.each do |time|
+        sleep 1
+        print " > #{time}".purple
+      end
+      puts ".\n ".purple
     end
 
     def full_cmd
@@ -76,7 +95,7 @@ module Guard
     def valid_target_specs(paths)
       target_specs(paths).select do |path|
         File.exist?(path) || File.exist?("#{path}.rb")
-      end.sort.uniq.join(' ')
+      end.uniq.join(' ')
     end
   end
 end
