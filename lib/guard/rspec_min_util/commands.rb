@@ -99,7 +99,9 @@ module Guard
       end
 
       def self.prompt
-        opts  = ::Guard.guards(:rspecmin).first.options
+        # opts  = ::Guard.guards(:rspecmin).first.options
+        # opts  = ::Guard.plugins(:rspecmin).first.options
+        opts  = ::Guard.state.session.plugins.all(:rspecmin).first.options
         specs = "[#{opts[:specs].join(', ')}]".yellow
         tags  = "[#{opts[:tags].join(', ')}]".yellow
         msg   = "h rspec".magenta
