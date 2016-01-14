@@ -100,10 +100,6 @@ module Guard
 
       def self.prompt
         # opts  = ::Guard.guards(:rspecmin).first.options
-<<<<<<< HEAD
-        # opts  = ::Guard.plugins(:rspecmin).first.options
-=======
->>>>>>> b7b2f95bead8f4c6ab7727f5b685402f206f1d50
         opts  = ::Guard.state.session.plugins.all(:rspecmin).first.options
         specs = "[#{opts[:specs].join(', ')}]".yellow
         tags  = "[#{opts[:tags].join(', ')}]".yellow
