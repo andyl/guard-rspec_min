@@ -10,7 +10,8 @@ module Guard
           helpers do
             def rs_opts
               # @rs_opts ||= ::Guard.guards(:rspecmin).first.options
-              @rs_opts ||= ::Guard.plugins(:rspecmin).first.options
+              # @rs_opts ||= ::Guard.plugins(:rspecmin).first.options
+              @rs_opts ||= ::Guard.state.session.plugins.all(:rspecmin).first.options
             end
 
             def regx(args)
